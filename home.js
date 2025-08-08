@@ -1,59 +1,45 @@
 const holidays = {
+  "mannam jayanthi": "2026-01-02",
+  "republic day": "2026-01-26",
+  "maha shivratri": "2026-02-26",
+  "holi": "2026-03-14",
+  "eid": "2026-03-31",
+  "vishu": "2026-04-14",
+  "good friday": "2026-04-18",
+  "bakrid": "2026-06-07",
+  "karkkidaka vavu": "2026-07-24",
+  "independence day": "2025-08-15",
   "onam": "2025-09-04",
-  "christmas": "2025-12-25",
-  "new year": "2026-01-01",
-  "eid": "2025-03-31",
+  "milad-un-nabi": "2025-09-05",
+  "mahanavami": "2025-10-01",
+  "gandhi jayanti": "2025-10-02",
   "diwali": "2025-10-20",
-  "karkkidaka vavu": "2025-08-13"
+  "christmas": "2025-12-25",
+  "new year": "2026-01-01"
 };
 
 let countdownInterval;
 
-async function findHoliday() {
+function findHoliday() {
   const input = document.getElementById("holidayInput").value.toLowerCase().trim();
   
-  try {
-    // First check local holidays
-    const dateStr = holidays[input];
-    if (dateStr) {
-      updateHolidayDisplay(new Date(dateStr));
-      return;
-    }
-
-    // If not found locally, try the API
-    const currentYear = new Date().getFullYear();
-    const response = await fetch(`https://holidayapi.com/v1/holidays?key=e1cd0eca-b99b-4312-b95f-5edab411d40a&country=IN&year=${currentYear}`);
-    const data = await response.json();
-
-    console.log(data);
-    if (data.holidays) {
-      // holidayapi.com returns an object, so we need to flatten it
-      const holidayList = Object.values(data.holidays).flat();
-      const holiday = holidayList.find(h => h.name.toLowerCase().includes(input));
-      if (holiday) {
-        updateHolidayDisplay(new Date(holiday.date));
-        return;
-      }
-    }
-    
-    alert("Holiday not found!");
-  } catch (error) {
-    console.error("Error fetching holiday data:", error);
-    alert("Error searching for holiday. Please try again.");
+  const dateStr = holidays[input];
+  if (!dateStr) {
+    alert("Holiday not found in list!");
+    return;
   }
+
+  const holidayDate = new Date(dateStr);
+  updateHolidayDisplay(holidayDate);
 }
 
 function updateHolidayDisplay(holidayDate) {
   const month = holidayDate.toLocaleString('default', { month: 'long' }).toUpperCase();
   const day = holidayDate.getDate();
 
-  // Update month title
   document.getElementById("monthDisplay").innerText = month;
-
-  // Generate calendar for that month
   generateCalendar(holidayDate, day);
 
-  // Start countdown
   if (countdownInterval) clearInterval(countdownInterval);
   startCountdown(holidayDate);
 }
@@ -61,13 +47,13 @@ function updateHolidayDisplay(holidayDate) {
 function generateCalendar(date, highlightDay) {
   const year = date.getFullYear();
   const month = date.getMonth();
-  const firstDay = new Date(year, month, 1).getDay(); // Sunday=0
+  const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const calendar = document.getElementById("calendarBody");
 
   calendar.innerHTML = "";
-
   let dayCounter = 1;
+
   for (let row = 0; row < 6; row++) {
     let rowHTML = "<tr>";
     for (let col = 0; col < 7; col++) {
