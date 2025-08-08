@@ -1,0 +1,38 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('holi.jpg'); 
+  background-size: cover;
+  background-position: center;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin-top: -10px;
+}
+
+
+.main {
+  width: 500px;      
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+
+.tagline {
+  font-size: 34px;
+  font-weight: bold;
+  
+}

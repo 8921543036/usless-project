@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  padding: 0;
+background-image: url(holi.jpg);
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.logo span {
+  color: white;
+  background: black;
+  padding: 0 5px;
+  border-radius: 3px;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #7b4fd8;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.calendar {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 320px;
+}
+
+.calendar table {
+  width: 100%;
+  border-spacing: 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.calendar td, .calendar th {
+  padding: 5px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.calendar td.active {
+  background: white;
+  color: #7b4fd8;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.time-box span {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.time-box small {
+  font-size: 14px;
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+
+.divider {
+  font-size: 40px;
+  color: #ffffffa0;
+}
+
+.message {
+  margin-top: 30px;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 24px;
+}
+.logo {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 1200px;
+ 
+}

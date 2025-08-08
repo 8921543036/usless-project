@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HOLIX - Countdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <div class="container">
+   <img src="holixx.jpg" class="logo" alt="HOLIX Logo">
+
+
+    <div class="search-box">
+      <input type="text" id="holidayInput" placeholder="Search A Holiday">
+      <button onclick="findHoliday()">Search</button>
+    </div>
+
+    <div class="calendar">
+      <h3 id="monthDisplay">MARCH</h3>
+      <table>
+        <thead>
+          <tr><th>MO</th><th>TU</th><th>WE</th><th>TH</th><th>FR</th><th>SA</th><th>SU</th></tr>
+        </thead>
+        <tbody id="calendarBody">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+
+<div class="countdown" id="countdown">
+  <div class="time-box">
+    <span id="days">00</span>
+    <small>DAYS</small>
+  </div>
+  <div class="divider">|</div>
+  <div class="time-box">
+    <span id="hours">00</span>
+    <small>HOURS</small>
+  </div>
+  <div class="divider">|</div>
+  <div class="time-box">
+    <span id="minutes">00</span>
+    <small>MINUTES</small>
+  </div>
+  <div class="divider">|</div>
+  <div class="time-box">
+    <span id="seconds">00</span>
+    <small>SECONDS</small>
+  </div>
+</div>
+
+    <div class="message" id="message">
+    “Your holiday is on the way <br> 
+    get your happy face ready!” 😊🎉
+    </div>
+
+    
+
+  <script src="home.js"></script>
+</body>
+</html>
