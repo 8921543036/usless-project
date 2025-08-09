@@ -1,14 +1,21 @@
 body {
   margin: 0;
   padding: 0;
-background-image: url(holi.jpg);
+  background-image: url(holi.jpg);
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+
 }
 
 .logo {
@@ -16,6 +23,11 @@ background-image: url(holi.jpg);
   font-weight: bold;
   text-align: left;
   margin-bottom: 10px;
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  /* remove fixed margin-right */
+ margin-left: -1100px;
 }
 
 .logo span {
@@ -30,7 +42,7 @@ background-image: url(holi.jpg);
   gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
-  
+  flex-wrap: wrap;
 }
 
 input {
@@ -38,6 +50,7 @@ input {
   border: none;
   border-radius: 20px;
   width: 60%;
+  min-width: 200px; 
   background: rgba(255, 255, 255, 0.3);
   color: white;
 }
@@ -54,6 +67,7 @@ button {
   color: #7b4fd8;
   font-weight: bold;
   cursor: pointer;
+  min-width: 100px;
 }
 
 .calendar {
@@ -87,7 +101,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
- 
+  flex-wrap: wrap; 
   padding: 20px;
   border-radius: 10px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -132,10 +146,54 @@ button {
   gap: 30px;
   font-size: 24px;
 }
-.logo {
-  width: 150px;
-  height: auto;
-  border-radius: 10px;
-  margin-right: 1200px;
- 
+
+
+
+@media (max-width: 768px) {
+  .search-box {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input {
+    width: 90%;
+    min-width: unset;
+  }
+  
+  button {
+    width: 90%;
+    margin-top: 10px;
+    min-width: unset;
+  }
+  
+  .time-box span {
+    font-size: 36px;
+  }
+  
+  .divider {
+    font-size: 28px;
+  }
+  
+  .message {
+    font-size: 20px;
+  }
+
+  .logo {
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .time-box span {
+    font-size: 28px;
+  }
+  
+  .divider {
+    font-size: 20px;
+  }
+  
+  .message {
+    font-size: 18px;
+  }
 }

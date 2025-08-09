@@ -20,16 +20,61 @@ const holidays = {
 
 let countdownInterval;
 
+
+function levenshtein(a, b) {
+  const matrix = [];
+
+  for (let i = 0; i <= b.length; i++) {
+    matrix[i] = [i];
+  }
+  for (let j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  }
+
+  for (let i = 1; i <= b.length; i++) {
+    for (let j = 1; j <= a.length; j++) {
+      if (b.charAt(i - 1) === a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, 
+          matrix[i][j - 1] + 1,     
+          matrix[i - 1][j] + 1      
+        );
+      }
+    }
+  }
+
+  return matrix[b.length][a.length];
+}
+
+
+function findClosestHoliday(input) {
+  input = input.toLowerCase().trim();
+  let closest = null;
+  let minDistance = Infinity;
+
+  for (const holiday in holidays) {
+    const distance = levenshtein(input, holiday);
+    if (distance < minDistance && distance <= holiday.length * 0.2) {
+      minDistance = distance;
+      closest = holiday;
+    }
+  }
+
+  return closest;
+}
+
 function findHoliday() {
-  const input = document.getElementById("holidayInput").value.toLowerCase().trim();
-  
-  const dateStr = holidays[input];
-  if (!dateStr) {
+  const input = document.getElementById("holidayInput").value;
+
+  const closestHoliday = findClosestHoliday(input);
+  if (!closestHoliday) {
     alert("Holiday not found in list!");
     return;
   }
 
-  const holidayDate = new Date(dateStr);
+  const holidayDate = new Date(holidays[closestHoliday]);
   updateHolidayDisplay(holidayDate);
 }
 
@@ -96,3 +141,30 @@ function startCountdown(targetDate) {
   updateCountdown();
   countdownInterval = setInterval(updateCountdown, 1000);
 }
+
+function showOtherHolidays(selectedHoliday) {
+  const listContainer = document.getElementById("otherHolidays");
+  listContainer.innerHTML = ""; 
+
+  const selectedDate = new Date(holidays[selectedHoliday]);
+  const holidayEntries = Object.entries(holidays);
+
+  const upcoming = holidayEntries.filter(([name, date]) => {
+    return new Date(date) > selectedDate;
+  });
+
+  upcoming.sort((a, b) => new Date(a[1]) - new Date(b[1]));
+
+  upcoming.forEach(([name, date]) => {
+    const li = document.createElement("li");
+    li.textContent = `${name.toUpperCase()} - ${date}`;
+    listContainer.appendChild(li);
+  });
+
+  if (upcoming.length === 0) {
+    listContainer.innerHTML = "<li>No more holidays after this date 🎉</li>";
+  }
+}
+
+
+
